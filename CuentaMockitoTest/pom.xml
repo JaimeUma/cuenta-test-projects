@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>es.uma.example</groupId>
-	<artifactId>TestMockito</artifactId>
+	<artifactId>CuentaTestMockito</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>TestMockito</name>
+	<name>CuentaTestMockito</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
