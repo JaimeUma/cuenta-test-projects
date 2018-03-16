@@ -19,17 +19,15 @@ import servicioLogin.GestorLogin;
 import servicioLogin.ICuenta;
 import servicioLogin.IRepositorioCuentas;
 
-@RunWith(MockitoJUnitRunner.class) 
-public class GestorLoginTest {
-	
-	@Mock
+public class GestorLoginTestWithoutAnnotations {
+
 	IRepositorioCuentas repo;
-	
-	@Mock
 	ICuenta cuenta;
 
 	@Before
 	public void inicializarTest() {
+		repo = mock(IRepositorioCuentas.class);
+		cuenta = mock(ICuenta.class);
 		when(repo.buscar("pepe")).thenReturn(cuenta);
 	}
 
