@@ -6,20 +6,16 @@ public class Cuenta {
     private double saldo;
 
     public Cuenta(double si) {
-        saldo = Math.max(0, si);
+        saldo = si;
     }
 
     public void ingresa(double cantidad) {
-        if (cantidad < 0) {
-            throw new IngresoNegativoException("ingreso negativo: " + cantidad);
-        }
         saldo += cantidad;
     }
 
     public double extrae(double cantidad) {
-        final double extraido = Math.min(saldo, cantidad);
-        saldo -= extraido;
-        return extraido;
+        saldo -= cantidad;
+        return cantidad;
     }
 
     public double saldo() {

@@ -8,10 +8,6 @@ import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 
 import servicioLogin.ExcepcionCuentaEnUso;
 import servicioLogin.ExcepcionUsuarioDesconocido;
@@ -28,6 +24,7 @@ public class GestorLoginTestWithoutAnnotations {
 	public void inicializarTest() {
 		repo = mock(IRepositorioCuentas.class);
 		cuenta = mock(ICuenta.class);
+		// definimos comportamiento del mock
 		when(repo.buscar("pepe")).thenReturn(cuenta);
 	}
 
@@ -37,7 +34,7 @@ public class GestorLoginTestWithoutAnnotations {
 
 		GestorLogin login = new GestorLogin(repo);
 		login.acceder("pepe", "1234");
-
+		// verifica que el metodo entrarCuenta ha sido llamado
 		verify(cuenta).entrarCuenta();
 	}
 
@@ -47,10 +44,11 @@ public class GestorLoginTestWithoutAnnotations {
 
 		GestorLogin login = new GestorLogin(repo);
 		login.acceder("pepe", "1234");
-
+		// verificar que el metodo entrarCuenta nunca es llamado
 		verify(cuenta, never()).entrarCuenta();
 	}
 
+	// verificar que la ejecución de este test producirá una excepción del tipo indicado
 	@Test(expected = ExcepcionUsuarioDesconocido.class)
 	public void testUsuarioIncorrecto() {
 		when(repo.buscar("bartolo")).thenReturn(null);
@@ -68,6 +66,7 @@ public class GestorLoginTestWithoutAnnotations {
 		login.acceder("pepe", "1234");
 		login.acceder("pepe", "1234");
 
+		// verificar que no se llama a entrarCuenta y si se llama una vez a bloquearCuenta
 		verify(cuenta, never()).entrarCuenta();
 		verify(cuenta).bloquearCuenta();
 	}
@@ -82,6 +81,7 @@ public class GestorLoginTestWithoutAnnotations {
 		login.acceder("pepe", "1224");
 		login.acceder("pepe", "1234");
 
+		// verificar que se llama a entrarCuenta y no se llama a bloquearCuenta
 		verify(cuenta).entrarCuenta();
 		verify(cuenta, never()).bloquearCuenta();
 	}

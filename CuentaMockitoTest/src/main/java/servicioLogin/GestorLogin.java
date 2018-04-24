@@ -22,11 +22,9 @@ public class GestorLogin {
 			throw new ExcepcionCuentaEnUso();
 
 		if (! cuenta.estaBloqueada()) {
-
 			if (cuenta.claveCorrecta(clave)) {
 				cuenta.entrarCuenta();
-			}
-			else {
+			}else {
 				if (! usuario.equals(usuarioAnterior)) {
 					numFallos = 0;
 					usuarioAnterior = usuario;
