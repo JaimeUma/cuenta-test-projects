@@ -1,6 +1,6 @@
 package es.uma.example.CuentaJUnitTest;
 
-// Esta es la versión depurada mediante tests JUnit
+// Esta versión contiene errores con respecto a los casos de prueba
 
 public class Cuenta {
     private double saldo;
